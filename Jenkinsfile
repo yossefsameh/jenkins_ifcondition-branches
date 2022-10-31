@@ -1,4 +1,7 @@
 pipeline {
+    import jenkins.model.*
+    jenkins = Jenkins.instance
+
     agent {label "slave"}  // cont-slave / ec2-slave
     stages {
         stage('build and push') {
