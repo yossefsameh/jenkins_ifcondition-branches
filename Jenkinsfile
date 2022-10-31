@@ -26,14 +26,14 @@ pipeline {
 
                     if ( env.BRANCH_NAME == "dev" || env.BRANCH_NAME == "master" || env.BRANCH_NAME == "prod" ) {   
                    
-                        withCredentials([file(credentialsId: 'kubectl', variable: 'kubectl-config')]){
+                        withCredentials([file(credentialsId: 'kubectl', variable: 'kubectlconfig')]){
 
                             sh """
                                     export BUILD_NUMBER=\$(cat ../bakehouse-build-num.txt)
                                     mv Deployment/deploy.yaml Deployment/deploy.yaml.tmp
                                     cat Deployment/deploy.yaml.tmp | envsubst > Deployment/deploy.yaml
                                     rm -f Deployment/deploy.yaml.tmp
-                                    kubectl apply --kubeconfig=${kubectl-config} -f Deployment
+                                    kubectl apply --kubeconfig=${kubectlconfig} -f Deployment
                             """   
                         }
                     }    
