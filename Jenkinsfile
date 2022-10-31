@@ -24,7 +24,7 @@ pipeline {
 
                 script {    
 
-                    if ( env.BRANCH_NAME == "dev" || env.BRANCH_NAME == "test" || env.BRANCH_NAME == "prod" ) {   
+                    if ( env.BRANCH_NAME == "dev" || env.BRANCH_NAME == "master" || env.BRANCH_NAME == "prod" ) {   
                    
                         withCredentials([file(credentialsId: 'kubectl', variable: 'kubectl-config')]){
 
